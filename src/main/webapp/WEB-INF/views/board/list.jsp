@@ -58,7 +58,7 @@
 							if (authUser != null && vo.getUserNo() == authUser.getNo()) {
 						%>
 						<td><a
-							href="<%=request.getContextPath()%>/board/list?no=<%=vo.getNo()%>"
+							href="<%=request.getContextPath()%>/board/delete?no=<%=vo.getNo()%>"
 							class="del">Delete</a></td>
 						<%
 							} else {

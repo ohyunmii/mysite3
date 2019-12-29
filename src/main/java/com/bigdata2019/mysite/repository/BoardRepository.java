@@ -112,7 +112,7 @@ public class BoardRepository {
 			conn = getConnection();
 			
 			//search with keywords: by author or title
-			String sql = "select b.no, name, title, contents, reg_date, hit from board b, user u where b.user_no=u.no and title like '%" + keyword + "%' or name like '%" + keyword + "%'";
+			String sql = "select b.no, name, title, contents, reg_date, hit from board as b, user as u where b.user_no=u.no having title like '%" + keyword + "%' or name like '%" + keyword + "%'";
 
 			pstmt = conn.prepareStatement(sql);
 

@@ -26,7 +26,6 @@ public class GuestbookController {
 
 		return "guestbook/list";
 	}
-	
 
 	// access only on post method
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)

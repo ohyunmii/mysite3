@@ -24,24 +24,27 @@ public class BoardController {
 
 	@RequestMapping({ "", "/list" })
 	public String list(Model model) {
-
 		List<BoardVo> list = boardService.list();
 		model.addAttribute("list", list);
 
 		return "board/list";
 	}
 	
-	@RequestMapping(value="/insert", method=RequestMethod.GET)
-	public String insert() {
-		return "/board/list";
+	@RequestMapping(value="/write", method=RequestMethod.GET)
+	public String write() {
+		return "/board/write";
 	}
 	
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(HttpSession session, BoardVo vo) {
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String write(HttpSession session, BoardVo vo) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		boardService.add(vo, authUser);
 		return "redirect:/board/list";
 	}
+
+	
+
+	
 	
 	
 }

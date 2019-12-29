@@ -28,7 +28,12 @@ public class BoardRepository {
 			// no, title, contents, reg_date, hit, g_no, o_no, depth, user_no
 			// String sql = "insert into board values(null, ?, ?, now(), 0, 0, 0, 0, (select
 			// no from user where name ='" + uVo.getName() + "'))";
-			String sql = "insert into board values(null, ?, ?, now(), 0, 0, 0, 0, " + uVo.getNo() + ")";
+			
+			//	laptop
+			String sql= "insert into board values(null, ?, ?, 0, 0, 0, 0, now(),"+ uVo.getNo() + ")";
+			
+			//	bit
+//			String sql = "insert into board values(null, ?, ?, now(), 0, 0, 0, 0, " + uVo.getNo() + ")";
 			pstmt = conn.prepareStatement(sql);
 
 			// Execute SQL Statment

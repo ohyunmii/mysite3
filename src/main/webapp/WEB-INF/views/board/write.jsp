@@ -20,8 +20,7 @@
 		<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="<%=request.getContextPath()%>/board?">
-					<input type = "hidden" name = "a" value="write">
+				<form class="board-form" method="post" action="<%=request.getContextPath()%>/board/write">
 					<table class="tbl-ex">
 						<tr>
 							<th colspan="2">Post</th>
@@ -33,12 +32,12 @@
 						<tr>
 							<td class="label">Contents</td>
 							<td>
-								<textarea id="content" name="content" ></textarea>
+								<textarea id="content" name="contents" ></textarea>
 							</td>
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="<%=request.getContextPath()%>/board?a=list">Cancel</a>
+						<a href="<%=request.getContextPath()%>/board/list">Cancel</a>
 						<input type="submit" value="Submit">
 					</div>
 				</form>				

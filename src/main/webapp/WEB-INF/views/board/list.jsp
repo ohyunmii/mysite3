@@ -28,7 +28,7 @@
 		<div id="content">
 			<div id="board">
 				<form id="search_form"
-					action="<%=request.getContextPath()%>/board?a=search" method="post">
+					action="<%=request.getContextPath()%>/board/search" method="post">
 					<input type="text" id="keyword" name="keyword" value=""> <input
 						type="submit" value="Search">
 				</form>
@@ -49,7 +49,7 @@
 					<tr>
 						<td><%=vo.getNo()%></td>
 						<td><a
-							href="<%=request.getContextPath()%>/board?a=view&no=<%=vo.getNo()%>"><%=vo.getTitle()%></a></td>
+							href="<%=request.getContextPath()%>/board/view?no=<%=vo.getNo()%>"><%=vo.getTitle()%></a></td>
 						<td><%=vo.getUserName()%></td>
 						<td><%=vo.getHit()%></td>
 						<td><%=vo.getRegDate()%></td>
@@ -58,7 +58,7 @@
 							if (authUser != null && vo.getUserNo() == authUser.getNo()) {
 						%>
 						<td><a
-							href="<%=request.getContextPath()%>/board?a=list&no=<%=vo.getNo()%>"
+							href="<%=request.getContextPath()%>/board/list?no=<%=vo.getNo()%>"
 							class="del">Delete</a></td>
 						<%
 							} else {
@@ -79,7 +79,7 @@
 					<%
 						if (authUser != null) {
 					%>
-					<a href="<%=request.getContextPath()%>/board?a=writeform"
+					<a href="<%=request.getContextPath()%>/board/write"
 						id="new-book">Write</a>
 					<%
 						}

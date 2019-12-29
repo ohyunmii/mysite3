@@ -24,7 +24,8 @@
 		<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="guestbook">
-				<form action="<%=request.getContextPath() %>/guestbook/insert" method="post">
+				<form action="<%=request.getContextPath()%>/guestbook/insert"
+					method="post">
 					<table border=1 width=500>
 						<tr>
 							<td>Name</td>
@@ -42,7 +43,7 @@
 						</tr>
 					</table>
 				</form>
-
+				<br> <br>
 
 				<%
 					int totalCount = list.size();
@@ -51,20 +52,20 @@
 						for (GuestbookVo vo : list) {
 				%>
 
-						<table width=510 border=1>
-							<tr>
-								<td>[<%=totalCount - index++%>]
-								</td>
-								<td><%=vo.getName()%></td>
-								<td><%=vo.getRegDate()%></td>
-								<td><a
-									href="<%=request.getContextPath() %>/guestbook/delete?no=<%=vo.getNo()%>">Delete</a></td>
-							</tr>
-							<tr>
-								<td colspan=4><%=vo.getContents().replace("\n", "<br>")%>
-								</td>
-							</tr>
-						</table> <br>
+				<table width=510 border=1>
+					<tr>
+						<td>[<%=totalCount - index++%>]
+						</td>
+						<td><%=vo.getName()%></td>
+						<td><%=vo.getRegDate()%></td>
+						<td><a
+							href="<%=request.getContextPath()%>/guestbook/delete?no=<%=vo.getNo()%>">Delete</a></td>
+					</tr>
+					<tr>
+						<td colspan=4><%=vo.getContents().replace("\n", "<br>")%></td>
+					</tr>
+				</table>
+				<br>
 
 				<%
 					}

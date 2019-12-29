@@ -11,6 +11,7 @@ import com.bigdata2019.mysite.vo.UserVo;
 
 @Service
 public class BoardService {
+	
 	@Autowired
 	private BoardRepository boardRepository;
 	

@@ -5,10 +5,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bigdata2019.mysite.service.UserService;
+import com.bigdata2019.mysite.vo.GuestbookVo;
 import com.bigdata2019.mysite.vo.UserVo;
 import com.bigdata2019.security.Auth;
 import com.bigdata2019.security.AuthUser;
@@ -67,12 +69,11 @@ public class UserController {
 //		return "redirect:/";
 //	}
 
+	
 	// Check Authentication
 	@Auth
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(@AuthUser UserVo authUser, Model model) {
-		System.out.println(authUser);
-
 		Long no = authUser.getNo();
 		UserVo userVo = userService.getUser(no);
 
@@ -96,15 +97,17 @@ public class UserController {
 //		return "redirect:/";
 //	}
 
-//	@RequestMapping(value = "/update", method = RequestMethod.POST)
-//	public String update(HttpSession session, UserVo userVo) {
-//		UserVo authUser = (UserVo) session.getAttribute("authUser");
-//		if (authUser == null) {
-//			return "redirect:/";
-//		}
-//		Long no = authUser.getNo();
-//		userService.update(no, userVo.getName(), userVo.getPassword(), userVo.getGender());
-//
-//		return "redirect:/";
-//	}
+	
+
+	@Auth
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(
+			@AuthUser UserVo authUser, 
+			@ModelAttribute UserVo vo) {
+
+		vo.setNo(authUser.getNo());
+		userService.update(vo);
+
+		return "redirect:/";
+	}
 }

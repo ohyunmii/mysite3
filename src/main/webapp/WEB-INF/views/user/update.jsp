@@ -22,13 +22,13 @@
 
 				<form id="join-form" name="joinForm" method="post"
 					action="${pageContext.request.contextPath }/user/update">
-					<label class="block-label" for="name">Name</label> <input id="name"
-						name="name" type="text" value="${userVo.name }"> <label
-						class="block-label" for="email">Email</label>
+					<label class="block-label" for="name">Name</label> 
+					<input id="name" name="name" type="text" value="${userVo.name }">
+					 <label	class="block-label" for="email">Email</label>
 					<h4>${userVo.email }</h4>
 
-					<label class="block-label">Password</label> <input name="password"
-						type="password" value="">
+					<label class="block-label">Password</label> 
+					<input id="password" name="password" type="password" value="">
 
 					<fieldset>
 						<legend>Gender</legend>

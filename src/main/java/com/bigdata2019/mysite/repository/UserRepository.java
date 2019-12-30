@@ -1,11 +1,5 @@
 package com.bigdata2019.mysite.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,6 +23,11 @@ public class UserRepository {
 
 	public Boolean insert(UserVo vo) {
 		int count = sqlSession.insert("user.insert", vo);
+		return (count == 1);
+	}
+	
+	public Boolean update(UserVo vo) {
+		int count = sqlSession.update("user.update", vo);
 		return (count == 1);
 	}
 

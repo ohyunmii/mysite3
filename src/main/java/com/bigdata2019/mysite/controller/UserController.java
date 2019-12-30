@@ -7,10 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bigdata2019.mysite.service.UserService;
 import com.bigdata2019.mysite.vo.UserVo;
+import com.bigdata2019.security.Auth;
+import com.bigdata2019.security.AuthUser;
 
 @Controller
 @RequestMapping("/user")
@@ -66,12 +67,11 @@ public class UserController {
 //		return "redirect:/";
 //	}
 
+	// Check Authentication
+	@Auth
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(HttpSession session, Model model) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (authUser == null) {
-			return "redirect:/";
-		}
+	public String update(@AuthUser UserVo authUser, Model model) {
+		System.out.println(authUser);
 
 		Long no = authUser.getNo();
 		UserVo userVo = userService.getUser(no);

@@ -6,21 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bigdata2019.mysite.vo.UserVo;
 
 @Repository
 public class UserRepository {
-
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
-
-		String url = "jdbc:mysql://localhost:3306/webdb?characterEncoding=utf8";
-		Connection conn = DriverManager.getConnection(url, "webdb", "webdb");
-
-		return conn;
-	}
+	
+	@Autowired
+	private DataSource dataSource;
 
 	public UserVo find(String email, String password) {
 		UserVo result = null;
@@ -29,7 +26,7 @@ public class UserRepository {
 		ResultSet rs = null;
 
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 
 			String sql = "select no, name from user where email=? and password=?";
 
@@ -44,8 +41,6 @@ public class UserRepository {
 				result.setNo(rs.getLong(1));
 				result.setName(rs.getString(2));
 			}
-		} catch (ClassNotFoundException e) {
-			System.out.println("Failed to load driver: " + e);
 		} catch (SQLException e) {
 			System.out.println("Error: " + e);
 		} finally {
@@ -71,7 +66,7 @@ public class UserRepository {
 		ResultSet rs = null;
 
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 
 			String sql = "select no, name, email, gender from user where no=?";
 
@@ -88,8 +83,6 @@ public class UserRepository {
 				result.setEmail(rs.getString(3));
 				result.setGender(rs.getString(4));
 			}
-		} catch (ClassNotFoundException e) {
-			System.out.println("Failed to load driver: " + e);
 		} catch (SQLException e) {
 			System.out.println("Error: " + e);
 		} finally {
@@ -115,7 +108,7 @@ public class UserRepository {
 		PreparedStatement pstmt = null;
 
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 
 			String sql = "insert into user values(null, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
@@ -129,8 +122,6 @@ public class UserRepository {
 			int count = pstmt.executeUpdate();
 			result = (count == 1);
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("Failed to load driver: " + e);
 		} catch (SQLException e) {
 			System.out.println("Error: " + e);
 		} finally {
@@ -158,7 +149,7 @@ public class UserRepository {
 
 
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 
 			String sql = "update user set name =?, password=?, gender= ? where no =? ";
 			pstmt = conn.prepareStatement(sql);
@@ -171,9 +162,7 @@ public class UserRepository {
 			int count = pstmt.executeUpdate();
 			result = (count == 1);
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("Failed to load driver: " + e);
-		} catch (SQLException e) {
+		}  catch (SQLException e) {
 			System.out.println("Error: " + e);
 		} finally {
 			// remove resources

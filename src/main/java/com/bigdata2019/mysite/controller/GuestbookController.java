@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bigdata2019.mysite.service.GuestbookService;
 import com.bigdata2019.mysite.vo.GuestbookVo;
+import com.bigdata2019.security.Auth;
 
 @Controller
 @RequestMapping("/guestbook")
@@ -20,6 +21,7 @@ public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
 
+	
 	@RequestMapping({"", "/list"})
 	public String index(Model model) {
 		List<GuestbookVo> list = guestbookService.list();

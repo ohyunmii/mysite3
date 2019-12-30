@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bigdata2019.mysite.service.BoardService;
 import com.bigdata2019.mysite.vo.BoardVo;
 import com.bigdata2019.mysite.vo.UserVo;
+import com.bigdata2019.security.Auth;
+import com.bigdata2019.security.AuthUser;
 
 @Controller
 @RequestMapping("/board")
@@ -33,15 +35,17 @@ public class BoardController {
 		return "board/list";
 	}
 
+	@Auth
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write() {
 
 		return "/board/write";
 	}
 
+	@Auth
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(HttpSession session, BoardVo vo) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
+	public String write(@AuthUser UserVo authUser, BoardVo vo) {
+		
 		boardService.add(vo, authUser);
 
 		return "redirect:/board/list";

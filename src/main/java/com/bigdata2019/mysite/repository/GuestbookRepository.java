@@ -134,6 +134,9 @@ public class GuestbookRepository {
 
 		return result;
 	}
+	
+	
+	
 
 	private Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");

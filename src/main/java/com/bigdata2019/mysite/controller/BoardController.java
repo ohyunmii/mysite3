@@ -64,8 +64,17 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	
-	
+	@RequestMapping(value="/view")
+	public String view(
+			@RequestParam(value = "no", required = true, defaultValue = "") Long no,
+			Model model) {
+
+		BoardVo boardVo = boardService.view(no);
+		
+		model.addAttribute("boardVo", boardVo);
+		
+		return "/board/view";
+	}
 	
 	
 	

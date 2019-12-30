@@ -34,5 +34,12 @@ public class BoardService {
 		List<BoardVo> searchList = boardRepository.search(keyword);
 		return searchList;
 	}
+	
+	public BoardVo view(Long no) {
+		BoardVo result = boardRepository.viewEntry(no);
+		return result;
+	}
+	
+
 
 }

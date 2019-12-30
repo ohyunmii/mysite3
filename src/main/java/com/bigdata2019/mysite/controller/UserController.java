@@ -40,31 +40,31 @@ public class UserController {
 		return "user/login";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpSession session,
-			@RequestParam(value = "email", required = true, defaultValue = "") String email,
-			@RequestParam(value = "password", required = true, defaultValue = "") String password) {
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	public String login(HttpSession session,
+//			@RequestParam(value = "email", required = true, defaultValue = "") String email,
+//			@RequestParam(value = "password", required = true, defaultValue = "") String password) {
+//
+//		UserVo vo = userService.getUser(email, password);
+//		if (vo == null) {
+//			return "redirect:/user/login?result=fail";
+//		}
+//		session.setAttribute("authUser", vo);
+//
+//		return "redirect:/";
+//	}
 
-		UserVo vo = userService.getUser(email, password);
-		if (vo == null) {
-			return "redirect:/user/login?result=fail";
-		}
-		session.setAttribute("authUser", vo);
-
-		return "redirect:/";
-	}
-
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
-
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (authUser != null) {
-			session.removeAttribute("authUser");
-			session.invalidate();
-		}
-
-		return "redirect:/";
-	}
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+//	public String logout(HttpSession session) {
+//
+//		UserVo authUser = (UserVo) session.getAttribute("authUser");
+//		if (authUser != null) {
+//			session.removeAttribute("authUser");
+//			session.invalidate();
+//		}
+//
+//		return "redirect:/";
+//	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(HttpSession session, Model model) {

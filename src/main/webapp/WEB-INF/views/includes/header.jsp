@@ -6,31 +6,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%
-	UserVo authUser = (UserVo) session.getAttribute("authUser");
-%>
 
 <div id="header">
 	<h1>MySite</h1>
 	<ul>
-		<%
-			if (authUser == null) {
-		%>
-		<li><a href="<%=request.getContextPath()%>/user/login">LogIn</a></li>
-		<li></li>
-		<li><a href="<%=request.getContextPath()%>/user/join">SignUp</a></li>
-		<li></li>
 
-		<%
-			} else {
-		%>
-		<li><a href="<%=request.getContextPath()%>/user/update">AccountSettings</a></li>
-		<li></li>
-		<li><a href="<%=request.getContextPath()%>/user/logout">SignOut</a></li>
-		<li></li>
-		<li>Welcome, <%=authUser.getName()%>!</li>
-		<%
-			}
-		%>
+		<c:choose>
+
+			<c:when test="${empty authUser }">
+				<li><a href="${pageContext.request.contextPath }/user/login">LogIn</a></li>
+				<li></li>
+				<li><a href="${pageContext.request.contextPath }/user/join">SignUp</a></li>
+				<li></li>
+			</c:when>
+
+			<c:otherwise>
+				<li><a href="${pageContext.request.contextPath }/user/update">AccountSettings</a></li>
+				<li></li>
+				<li><a href="${pageContext.request.contextPath }/user/logout">SignOut</a></li>
+				<li></li>
+				<li>Welcome, ${authUser.name }!</li>
+			</c:otherwise>
+
+		</c:choose>
+
 	</ul>
 </div>

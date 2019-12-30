@@ -30,10 +30,10 @@ public class BoardRepository {
 			// no from user where name ='" + uVo.getName() + "'))";
 			
 			//	laptop
-			String sql= "insert into board values(null, ?, ?, 0, 0, 0, 0, now(),"+ uVo.getNo() + ")";
+			//String sql= "insert into board values(null, ?, ?, 0, 0, 0, 0, now(),"+ uVo.getNo() + ")";
 			
 			//	bit
-//			String sql = "insert into board values(null, ?, ?, now(), 0, 0, 0, 0, " + uVo.getNo() + ")";
+			String sql = "insert into board values(null, ?, ?, now(), 0, 0, 0, 0, " + uVo.getNo() + ")";
 			pstmt = conn.prepareStatement(sql);
 
 			// Execute SQL Statment
@@ -231,6 +231,48 @@ public class BoardRepository {
 				e.printStackTrace();
 			}
 		}
+		return result;
+	}
+	
+	public BoardVo viewEntry(Long no) {
+		BoardVo result = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+
+		try {
+			conn = getConnection();
+
+			String sql = " select title, contents from board where no = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				result = new BoardVo();
+				result.setTitle(rs.getString(1));
+				result.setContents(rs.getString(2));
+			}
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("Failed to load Driver: " + e);
+		} catch (SQLException e) {
+			System.out.println("Error: " + e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 		return result;
 	}
 

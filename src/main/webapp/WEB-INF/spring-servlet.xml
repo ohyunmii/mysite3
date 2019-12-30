@@ -27,6 +27,23 @@
 		<property name="order" value="1" />
 	</bean>
 
+	<!-- Interceptors -->
+	<mvc:interceptors>
+
+		<!-- <mvc:interceptor> <mvc:mapping path="/guestbook/**" /> <bean class="com.bigdata2019.mysite.interceptor.MyInterceptor"/> 
+			</mvc:interceptor> -->
+
+		<mvc:interceptor>
+			<mvc:mapping path="/user/auth" />
+			<bean class="com.bigdata2019.security.LoginInterceptor" />
+		</mvc:interceptor>
+		
+			<mvc:interceptor>
+			<mvc:mapping path="/user/logout" />
+			<bean class="com.bigdata2019.security.LogoutInterceptor" />
+		</mvc:interceptor>
+
+	</mvc:interceptors>
 
 	<context:annotation-config />
 	<context:component-scan

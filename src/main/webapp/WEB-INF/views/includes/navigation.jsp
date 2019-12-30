@@ -7,8 +7,8 @@
 	
 <div id="navigation">
 	<ul>
-		<li><a href="<%=request.getContextPath()%>">Home</a></li>
-		<li><a href="<%=request.getContextPath()%>/guestbook">Guestbook</a></li>
-		<li><a href="<%=request.getContextPath()%>/board">Board</a></li>
+		<li><a href="${pageContext.request.contextPath }">Home</a></li>
+		<li><a href="${pageContext.request.contextPath }/guestbook">Guestbook</a></li>
+		<li><a href="${pageContext.request.contextPath }/board">Board</a></li>
 	</ul>
 </div>

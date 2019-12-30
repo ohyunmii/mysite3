@@ -26,7 +26,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		vo.setEmail(email);
 		vo.setPassword(password);
 		
-		UserVo authUser = userService.getUser(email, password);
+		UserVo authUser = userService.getUser(vo);
 		
 		if(authUser==null) {
 			response.sendRedirect(request.getContextPath()+"/user/login?result=fail");

@@ -1,4 +1,3 @@
-<%@page import="com.bigdata2019.mysite.vo.GuestbookVo"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -31,7 +30,7 @@
 							<td><input type="password" name="password"></td>
 						</tr>
 						<tr>
-							<td colspan=4><textarea name="contents" id="content"
+							<td colspan=4><textarea name="contents" id="contents"
 									cols=60 rows=5></textarea></td>
 						</tr>
 						<tr>
@@ -54,7 +53,7 @@
 								href="${pageContext.request.contextPath }/guestbook/delete?no=${vo.no}">Delete</a></td>
 						</tr>
 						<tr>
-							<td colspan=4>${fn:replace(vo.contents, newLine, "<br>") }</td>
+							<td colspan=4>${fn:replace(vo.contents, newLine, "<br>")}</td>
 						</tr>
 					</table>
 					<br>

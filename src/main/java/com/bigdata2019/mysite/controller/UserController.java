@@ -96,15 +96,15 @@ public class UserController {
 //		return "redirect:/";
 //	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(HttpSession session, UserVo userVo) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (authUser == null) {
-			return "redirect:/";
-		}
-		Long no = authUser.getNo();
-		userService.update(no, userVo.getName(), userVo.getPassword(), userVo.getGender());
-
-		return "redirect:/";
-	}
+//	@RequestMapping(value = "/update", method = RequestMethod.POST)
+//	public String update(HttpSession session, UserVo userVo) {
+//		UserVo authUser = (UserVo) session.getAttribute("authUser");
+//		if (authUser == null) {
+//			return "redirect:/";
+//		}
+//		Long no = authUser.getNo();
+//		userService.update(no, userVo.getName(), userVo.getPassword(), userVo.getGender());
+//
+//		return "redirect:/";
+//	}
 }

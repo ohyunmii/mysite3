@@ -28,7 +28,9 @@ public class BoardController {
 	public String list(Model model, HttpSession session) {
 		List<BoardVo> list = boardService.list();
 		model.addAttribute("list", list);
-
+		System.out.println("==" + list.get(0).getContents() + "===");
+		System.out.println("==" + list.get(1).getContents() + "===");
+		System.out.println("==" + list.get(2).getContents() + "===");
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		model.addAttribute("authUser", authUser);
 		

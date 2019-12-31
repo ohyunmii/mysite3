@@ -33,7 +33,7 @@
 						<form method="post"
 							action="${pageContext.request.contextPath }/guestbook/delete">
 							<br> <br> <br> <input type='hidden' name="no"
-								value="${param.no }"> <label>Password</label> <input
+								value="${no }"> <label>Password</label> <input
 								type="password" name="password"> <input type="submit"
 								value="Confirm">
 						</form>

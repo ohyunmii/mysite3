@@ -73,7 +73,10 @@ public class UserController {
 	// Check Authentication
 	@Auth
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(@AuthUser UserVo authUser, Model model) {
+	public String update(
+			@AuthUser UserVo authUser, 
+			Model model) {
+		
 		Long no = authUser.getNo();
 		UserVo userVo = userService.getUser(no);
 

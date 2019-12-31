@@ -50,7 +50,7 @@
 							<td>${vo.name }</td>
 							<td>${vo.regDate }</td>
 							<td><a
-								href="${pageContext.request.contextPath }/guestbook/delete?no=${vo.no}">Delete</a></td>
+								href="${pageContext.request.contextPath }/guestbook/delete/${vo.no }">Delete</a></td>
 						</tr>
 						<tr>
 							<td colspan=4>${fn:replace(vo.contents, newLine, "<br>")}</td>
